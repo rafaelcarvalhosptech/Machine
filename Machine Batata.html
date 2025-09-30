@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Conversor de Bases</title>
+
+    <style>
+        * {
+            font-family: Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #187bcd;
+        }
+
+        .resultado-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .resultado-container div {
+            background-color: white;
+            padding: 20px;
+            width: 200px;
+            border: 2px solid #1e90ff;
+            border-radius: 10px;
+            text-align: center;
+            color: #1e90ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Conversor de Bases Numéricas</h1>
+
+    <label>Digite um número:</label><br>
+    <input id="input_num" placeholder="Ex: 666" />
+    <br><br>
+
+    <label>Base do número:</label><br>
+    <select id="select_base">
+        <option value="10">Decimal</option>
+        <option value="2">Binário</option>
+        <option value="8">Octal</option>
+        <option value="16">Hexadecimal</option>
+    </select>
+    <br><br>
+
+    <button onclick="converter()">Converter</button>
+
+    <div class="resultado-container">
+        <div id="resultado_decimal">Decimal: </div>
+        <div id="resultado_binario">Binário: </div>
+        <div id="resultado_octal">Octal: </div>
+        <div id="resultado_hexadecimal">Hexadecimal: </div>
+    </div>
+
+    <script>
+        function converter() {
+            var base = select_base.value;
+            var numero = input_num.value;
+
+            if (base == '2' && (numero.includes('2') || numero.includes('3') || numero.includes('4') || numero.includes('5') || numero.includes('6') || numero.includes('7') || numero.includes('8') || numero.includes('9'))) {
+                alert('Número binário inválido!');
+                return;
+            }
+
+            if (base == '8' && (numero.includes('8') || numero.includes('9'))) {
+                alert('Número octal inválido!');
+                return;
+            }
+
+            var decimal = parseInt(numero, parseInt(base));
+
+            resultado_decimal.innerHTML = 'Decimal: ' + decimal.toString(10);
+            resultado_binario.innerHTML = 'Binário: ' + decimal.toString(2);
+            resultado_octal.innerHTML = 'Octal: ' + decimal.toString(8);
+            resultado_hexadecimal.innerHTML = 'Hexadecimal: ' + decimal.toString(16).toUpperCase();
+        }
+    </script>
+
+</body>
+
+</html>
